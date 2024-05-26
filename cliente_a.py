@@ -1,6 +1,6 @@
 import Pyro5.api
 
-def main():
+def correr_cliente():
     # Se especifica la dirección IP del servidor al correr primero el servidor
     server_ip = "192.168.1.44"
 
@@ -13,4 +13,4 @@ def main():
     print(resultado)
 
 if __name__ == "__main__":
-    main()
+    correr_cliente()
