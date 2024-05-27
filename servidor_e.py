@@ -16,9 +16,6 @@ class Materias(object):
                 raise ValueError(f"No hay materias para el día {dia}.")
         else:
             return self.__materias[dia]
-
-    def get_diccionario(self):
-        return self.__materias
     
 def correr_servicio():
     hostname = socket.gethostname()
@@ -28,7 +25,6 @@ def correr_servicio():
     print(f"Servidor listo. URI del objeto: {uri}")
     print(f"Dirección IP del servidor: {direccion_ip}")
     daemon.requestLoop()  
-
 
 if __name__ == "__main__":
     correr_servicio()
