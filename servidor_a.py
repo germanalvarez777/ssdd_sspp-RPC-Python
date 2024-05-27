@@ -1,13 +1,26 @@
 import Pyro5.api
 import socket
+import time
 
-@Pyro5.api.expose               # Decorador que expone la clase para que puedan ser llamados remotamente.
-class Paridad(object):          # Clase conformada por un metodo que define el servicio remoto
+@Pyro5.api.expose               
+class Paridad(object):          
     def es_par(self, numero):
+        while numero == -1:
+            print("...")        # Simulacion de que el servidor entra en un bucle infinito al procesar numero -1
+            time.sleep(6)
+            break
+        if numero == -1:    
+            self.shutdown()     # Despues de (6 seg por ej) de que el servidor no responde, se corta el servicio RPC
+
         if numero % 2 == 0:
             return f"El número {numero} es par."
         else:
             return f"El número {numero} es impar."
+
+    def shutdown(self):
+        print("Servidor falla ante bucle infinito.")
+        Pyro5.api.current_context().daemon.shutdown()
+
 
 def correr_servicio():
     # Obtener la dirección IP de la máquina del servidor
@@ -25,7 +38,10 @@ def correr_servicio():
     print(f"Dirección IP del servidor: {direccion_ip}")
 
     # Mantener el servidor corriendo para escuchar las llamadas RPC
-    daemon.requestLoop()
+    try:
+        daemon.requestLoop()
+    finally:
+        daemon.close()
 
 if __name__ == "__main__":
     correr_servicio()

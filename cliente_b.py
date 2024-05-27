@@ -5,7 +5,7 @@ def correr_cliente():
     server_ip = "192.168.1.44"
 
     # Se crea un proxy para el objeto remoto registrado en la IP y puerto especificados.
-    calculadora_cliente = Pyro5.api.Proxy(f"PYRO:ejercicio2_rpc@{server_ip}:50498")
+    calculadora_cliente = Pyro5.api.Proxy(f"PYRO:ejercicio2_rpc@{server_ip}:56410")
     
     # Se envian los numeros y la operacion al servidor
     operacion = int(input("Ingrese la operacion a efectuar (1:Suma,2:Resta,3:Division,4:Producto,Cualquier otro numero:Salir)\n"))

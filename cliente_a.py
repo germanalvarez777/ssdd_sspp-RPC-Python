@@ -5,7 +5,7 @@ def correr_cliente():
     server_ip = "192.168.1.44"
 
     # Se crea un proxy para el objeto remoto registrado como "ejercicio1_rpc" en la IP y puerto especificados.
-    paridad = Pyro5.api.Proxy(f"PYRO:ejercicio1_rpc@{server_ip}:50353")
+    paridad = Pyro5.api.Proxy(f"PYRO:ejercicio1_rpc@{server_ip}:50755")
     
     # Envía un número al servidor
     numero = int(input("Introduce un número: "))
